@@ -111,6 +111,15 @@ fn run_day(day: u32, test: bool) {
             days::day_03::two::run(&_input);
             runtime_two = start_time.elapsed();
         },
+		"04" => {
+            start_time = Instant::now();
+            days::day_04::one::run(&_input);
+            runtime_one = start_time.elapsed();
+
+            start_time = Instant::now();
+            days::day_04::two::run(&_input);
+            runtime_two = start_time.elapsed();
+        },
 		_ => {
             if day > 25 {
                 eprintln!("Day {} does not exist", day_str);
@@ -145,19 +154,19 @@ fn add_new_day(day: u32) {
     // write placeholder to one.rs and two.rs
     let one_path = format!("{}/one.rs", day_dir);
     fs::write(&one_path, 
-        "#[allow(unused_imports)]
-        use crate::utils::prelude::*;
-
-        pub fn run(input: &String) {}"
+        format!("{}\n{}\n\n{}",
+            "#[allow(unused_imports)]\n",
+            "use crate::utils::prelude::*;\n\n",
+            "pub fn run(input: &String) {}")
         )
-        .expect("Failed to write one.rs");
+        .expect("Failed to write two.rs");
     
     let two_path = format!("{}/two.rs", day_dir);
     fs::write(&two_path, 
-        "#[allow(unused_imports)]
-        use crate::utils::prelude::*;
-
-        pub fn run(input: &String) {}"
+        format!("{}\n{}\n\n{}",
+            "#[allow(unused_imports)]\n",
+            "use crate::utils::prelude::*;\n\n",
+            "pub fn run(input: &String) {}")
         )
         .expect("Failed to write two.rs");
 
